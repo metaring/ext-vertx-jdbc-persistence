@@ -11,7 +11,7 @@ import io.vertx.ext.sql.ResultSet;
 import io.vertx.ext.sql.SQLConnection;
 import com.metaring.framework.SysKB;
 import com.metaring.framework.Tools;
-import com.metaring.framework.ext.vertx.VertxUtilties;
+import com.metaring.framework.ext.vertx.VertxUtilities;
 import com.metaring.framework.functionality.FunctionalityTransactionController;
 import com.metaring.framework.persistence.OperationResult;
 import com.metaring.framework.persistence.PersistenceController;
@@ -30,7 +30,7 @@ public class VertxPersistenceController implements PersistenceController {
     public final CompletableFuture<FunctionalityTransactionController> init(SysKB sysKB, Executor asyncExecutor) {
         final CompletableFuture<FunctionalityTransactionController> init = new CompletableFuture<>();
         CompletableFuture.runAsync(() -> {
-            jdbcClient = JDBCClient.createShared(VertxUtilties.INSTANCE, new JsonObject(sysKB.get("persistence").toJson()));
+            jdbcClient = JDBCClient.createShared(VertxUtilities.INSTANCE, new JsonObject(sysKB.get("persistence").toJson()));
             jdbcClient.getConnection(result -> {
                 try {
                     if (result.failed()) {
